@@ -1,58 +1,55 @@
-# 🚀 CI/CD Pipeline Project
+# 🚀 CI/CD Pipeline with Jenkins, Docker & AWS EC2
 
-## 📌 Overview
-__________________
-This project demonstrates the design and implementation of an end-to-end CI/CD pipeline using GitHub, Jenkins, Docker, and AWS EC2.
+## 📌 Project Overview
 
-The primary objective was to build a fully automated deployment workflow where every code push triggers a build, containerization process, and deployment to a cloud server — without any manual intervention.
+Designed and implemented an end-to-end CI/CD pipeline using GitHub, Jenkins, Docker, and AWS EC2 to automate application deployment.
 
-The deployed application is a Flask-based restaurant website ("The Biryani Palace") running inside a Docker container on AWS EC2.
+The project automatically builds, containerizes, and deploys a Flask-based web application whenever new code is pushed to the GitHub repository, enabling a fully automated deployment workflow with zero manual intervention.
+
+The deployed application is a restaurant website ("The Biryani Palace") running inside a Docker container on AWS EC2.
 
 ---
 
-## 🏗️ Architecture
-__________________
-### 🔄 Deployment Workflow
+## 🏗️ CI/CD Workflow
 
-```
+```text
 Developer
    ↓
-Git Push (GitHub)
+Git Push to GitHub
    ↓
-Webhook Trigger
+GitHub Webhook Trigger
    ↓
-Jenkins Pipeline
+Jenkins Pipeline Execution
    ↓
 Docker Image Build
    ↓
-Container Replacement
+Stop & Remove Old Container
+   ↓
+Deploy Updated Container
    ↓
 Live Application on AWS EC2
 ```
 
-_This architecture ensures continuous integration and automated deployment upon every push to the main branch._
+This workflow ensures continuous integration and automated deployment on every push to the main branch.
 
 ---
 
-## 🧰 Technology Stack
-________________________
+## 🧰 Technologies Used
 
-- 🧾 Git – Version control  
-- 🌐 GitHub – Source code hosting  
-- ⚙️ Jenkins – CI/CD automation server  
-- 🐳 Docker – Containerization platform  
-- ☁️ AWS EC2 – Cloud compute environment  
-- 🐍 Flask – Python web framework  
+- Git
+- GitHub
+- Jenkins
+- Docker
+- AWS EC2
+- Flask (Python)
 
 ---
 
-## 📁 Repository Structure
-____________________________
+## 📁 Project Structure
 
-```
+```text
 CI-CD-project/
 
-│
 ├── app.py
 ├── requirements.txt
 ├── Dockerfile
@@ -63,41 +60,41 @@ CI-CD-project/
 
 ---
 
-## ⚙️ CI/CD Pipeline Stages
-___________________________
+## ⚙️ Jenkins Pipeline Stages
 
-The Jenkins pipeline consists of the following stages:
+The CI/CD pipeline was implemented using Jenkins Declarative Pipeline and includes the following stages:
 
-- 🔹 Checkout Source Code – Pull latest changes from GitHub  
-- 🔹 Build Docker Image – Create updated container image  
-- 🔹 Stop Existing Container – Safely terminate running instance  
-- 🔹 Deploy New Container – Run updated image on EC2  
-- 🔹 Post-Deployment Logging – Log success/failure  
+- Checkout latest source code from GitHub
+- Build Docker image for the Flask application
+- Stop and remove the existing running container
+- Deploy updated Docker container on AWS EC2
+- Log deployment status and pipeline results
 
-The pipeline is automatically triggered through GitHub webhook integration.
+GitHub webhooks were configured to automatically trigger the Jenkins pipeline on every code push.
 
 ---
 
 ## 🌐 Deployment Details
 
-- ☁️ Hosted on AWS EC2  
-- 🚪 Application exposed on port 5000  
-- 🔁 Fully automated container replacement on every push  
+- Application hosted on AWS EC2
+- Flask application exposed on port 5000
+- Automated container replacement during every deployment
+- Continuous deployment enabled through GitHub webhook integration
 
-Each commit to the main branch results in:
+Each commit pushed to the main branch automatically:
 
-- ⚡ Automatic Docker image rebuild  
-- 🔄 Replacement of the previous running container  
-- 🚀 Immediate update of the live application  
+- Triggers the Jenkins pipeline
+- Builds a new Docker image
+- Replaces the existing running container
+- Deploys the updated application to production
 
 ---
 
 ## 🎯 Key Learnings
-____________________
 
-- 🧠 Configuring Jenkins on AWS EC2 from scratch  
-- 🔐 Managing Docker daemon permissions for Jenkins user  
-- 💾 Handling disk and swap limitations in cloud environments  
-- 🔗 Implementing webhook-based automated deployment  
-- 🐞 Debugging Git authentication and pipeline failures  
-- ♻️ Designing a repeatable and reliable deployment workflow  
+- Configured Jenkins on AWS EC2 from scratch
+- Implemented webhook-based automated CI/CD workflow
+- Managed Docker permissions for Jenkins user
+- Debugged pipeline failures and Git authentication issues
+- Handled EC2 disk space and swap memory limitations
+- Built a repeatable and reliable deployment process
